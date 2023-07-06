@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="partial/partial :: head">
+</head>
+<body>
+    <main class="container">
+    <a th:href="@{'/pelicula/crear'}" type="button" class="btn btn-primary mt-5">Guardar</a>
+    <table class="table table-striped table-bordered mt-5">
+        
+        <th>ID</th>
+        <th>Titulo</th>
+        <th>Poster</th>
+        <th>Sinopsis</th>
+        <th>Genero</th>
+        <th>Duracion</th>
+        <th>Clasificacion</th>
+        <th>Director</th>
+        <th>Operaciones</th>
+
+        <tr th:each="pelicula: ${peliculas}">
+            <td th:text = "${pelicula.id}"></td>
+            <td th:text = "${pelicula.titulo}"></td>
+            <td><img th:src="@{'/images/' + ${pelicula.poster}}" alt="imagen" width="150" height="200"></td>
+            <td th:text = "${pelicula.sinopsis}"></td>
+            <td th:text = "${pelicula.genero}"></td>
+            <td th:text = "${pelicula.duracion}"></td>
+            <td th:text = "${pelicula.clasificacion}"></td>
+            <td th:text = "${pelicula.director}"></td>
+            <td><a href="" type="button" class="btn btn-success"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a href="" type="button" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
+            </td>
+        </tr>
+    
+    </table>
+</main>
+</body>
+</html>

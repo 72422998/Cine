@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head th:replace="partial/partial :: head">
+    </head>
+<body>
+    <main class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <form th:action="@{/pelicula/crear}" method="post" th:object="${peliculaDTO}">
+                        <div class="mb-3">
+                            <label for="" class="form-label">Titulo</label>
+                            <input type="text" class="form-control" th:field="*{titulo}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Poster</label>
+                            <input type="file" class="form-control" th:field="*{poster}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Sinopsis</label>
+                            <textarea type="text" class="form-control" th:field="*{sinopsis}"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Genero</label>
+                            <input type="text" class="form-control" th:field="*{genero}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Duracion</label>
+                            <input type="text" class="form-control" th:field="*{duracion}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Clasificacion</label>
+                            <input type="text" class="form-control" th:field="*{clasificacion}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Director</label>
+                            <input type="text" class="form-control" th:field="*{director}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Categoria</label>
+                            <select name="" type="text" id="" class="form-control" th:field="*{categoria_id}">
+                                <!-- <option value="">Seleccione una categoria</option>
+                                <option value="" th:each="categoria:${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option> -->
+                            </select>
+                        </div>
+                        <button class="btn btn-block btn-success">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
