@@ -29,7 +29,7 @@ public class PeliculaWebController {
     public String getAllPeliculas(Model model) {
         List<PeliculaDTO> peliculas = peliculaService.findAll();
         model.addAttribute("peliculas", peliculas);
-        return "peliculas/lista";
+        return "peliculas/listar";
     }
     
     @GetMapping("/crear")
