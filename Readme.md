@@ -14,3 +14,23 @@ Subir versiones del local al remoto
 git push origin --tags
 
 ```
+Eliminar tag de manera local
+```
+git tag -d <nombre_tag>
+```
+Eliminar tag de manera remota
+```
+git push origin --delete <nombre_tag>
+```
+Ver tags existentes
+```
+git tag
+```
+Ver información adicional sobre los tags
+```
+git show <nombre_tag>
+```
+Ver lista de tags remotos
+```
+git ls-remote --tags origin
+```
