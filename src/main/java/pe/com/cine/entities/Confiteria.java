@@ -1,7 +1,8 @@
 package pe.com.cine.entities;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -18,36 +19,34 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "productos")
-public class Producto {
+@Table(name = "confiterias")
+public class Confiteria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "producto_id")
-    private Long productoId;
+    @Column(name = "confiteria_id")
+    private Long confiteriaId;
 
     @Column(name = "nombre")
     @NotEmpty
     @Size(max = 50)
     private String nombre;
-    @Column(name = "precio")
+    @Column(name = "producto")
     @NotEmpty
     @Size(max = 20)
-    private Double precio;
-
+    private Producto producto;
     @ManyToOne
-    @JoinColumn(name = "confiteria_id")
-    private Confiteria confiteria;
+    @JoinColumn(name = "sede_id")
+    private Sede sede;
 
-    public Producto(String nombre, Double precio,
-            Confiteria confiteria) {
+    public Confiteria(String nombre, Producto producto, Sede sede) {
         this.nombre = nombre;
-        this.precio = precio;
-        this.confiteria = confiteria;
+        this.producto = producto;
+        this.sede = sede;
     }
 
-    public Producto(@NotEmpty @Size(max = 50) String nombre, @NotEmpty @Size(max = 20) Double precio) {
+    public Confiteria(@NotEmpty @Size(max = 50) String nombre, @NotEmpty @Size(max = 20) Producto producto) {
         this.nombre = nombre;
-        this.precio = precio;
+        this.producto = producto;
     }
 
 }
