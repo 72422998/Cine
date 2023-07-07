@@ -34,3 +34,7 @@ Ver lista de tags remotos
 ```
 git ls-remote --tags origin
 ```
+Descartar cambios
+```
+git checkout -- .
+```
