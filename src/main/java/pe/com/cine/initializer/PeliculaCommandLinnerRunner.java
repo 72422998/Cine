@@ -10,7 +10,7 @@ import pe.com.cine.repositories.CategoriaRepository;
 import pe.com.cine.repositories.PeliculaRepository;
 
 @Component
-public class MyCommandLinerRunner implements CommandLineRunner{
+public class PeliculaCommandLinnerRunner implements CommandLineRunner{
     @Autowired
     private PeliculaRepository peliculaRepository;
     @Autowired
@@ -21,7 +21,7 @@ public class MyCommandLinerRunner implements CommandLineRunner{
         // .orElseThrow(()->new RuntimeException("categoria no encontrada"));
 
         Pelicula pelicula1 = new Pelicula(
-            "Terminator","imagen1.webp","Un robot viene del futuro a matar a un niño pero se hace su amigo","Accion","180min","+14","James Cameron"
+            "Terminator","imagen1.jpg","Un robot viene del futuro a matar a un niño pero se hace su amigo","180min","+14","James Cameron"
         );
         pelicula1.setCategoria(categoria1);
         peliculaRepository.save(pelicula1);

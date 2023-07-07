@@ -25,7 +25,7 @@ public class CategoriaServiceImpl implements CategoriaService{
     }
 
     @Override
-    public CategoriaDTO findById(long id) {
+    public CategoriaDTO findById(Long id) {
         Categoria categoria = categoriaRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Categoria no encontrada con ID:" + id));
         return modelMapper.map(categoria, CategoriaDTO.class);
     }
@@ -38,7 +38,7 @@ public class CategoriaServiceImpl implements CategoriaService{
     }
 
     @Override
-    public CategoriaDTO update(long id, CategoriaDTO categoriaDTO) {
+    public CategoriaDTO update(Long id, CategoriaDTO categoriaDTO) {
         Categoria categoriaexistente = categoriaRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Categoria no encontrad con ID:" + id));
         modelMapper.map(categoriaDTO, categoriaexistente);
         Categoria categoriaActualizada = categoriaRepository.save(categoriaexistente);
@@ -46,7 +46,7 @@ public class CategoriaServiceImpl implements CategoriaService{
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         categoriaRepository.deleteById(id);
     }
 

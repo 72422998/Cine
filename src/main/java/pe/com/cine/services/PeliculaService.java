@@ -6,8 +6,8 @@ import pe.com.cine.dto.PeliculaDTO;
 
 public interface PeliculaService {
     List<PeliculaDTO>findAll();
-    PeliculaDTO findById(long id);
+    PeliculaDTO findById(Long id);
     PeliculaDTO add(PeliculaDTO peliculaDTO);
-    PeliculaDTO update(long id, PeliculaDTO peliculaDTO);
-    void delete(long id);
+    PeliculaDTO update(Long id, PeliculaDTO peliculaDTO);
+    void delete(Long id);
 }

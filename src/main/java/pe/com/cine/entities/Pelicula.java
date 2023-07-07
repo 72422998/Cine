@@ -22,7 +22,8 @@ import lombok.NoArgsConstructor;
 public class Pelicula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "pelicula_id")
+    private Long peliculaId;
 
     @Column(name = "titulo")
     @NotEmpty
@@ -36,10 +37,7 @@ public class Pelicula {
     @NotEmpty
     @Size(max = 500)
     private String sinopsis;
-    @Column(name="genero")
-    @NotEmpty
-    @Size(max = 50)
-    private String genero;
+    
     @Column(name="duracion")
     @NotEmpty
     @Size(max = 50)
@@ -56,12 +54,11 @@ public class Pelicula {
     @JoinColumn(name ="categoria_id")
     private Categoria categoria;
 
-    public Pelicula(String titulo, String poster, String sinopsis, String genero, String duracion, String clasificacion,
+    public Pelicula(String titulo, String poster, String sinopsis, String duracion, String clasificacion,
             String director, Categoria categoria) {
         this.titulo = titulo;
         this.poster = poster;
         this.sinopsis = sinopsis;
-        this.genero = genero;
         this.duracion = duracion;
         this.clasificacion = clasificacion;
         this.director = director;
@@ -69,13 +66,12 @@ public class Pelicula {
     }
 
     public Pelicula(@NotEmpty @Size(max = 50) String titulo, @NotEmpty @Size(max = 255) String poster,
-            @NotEmpty @Size(max = 500) String sinopsis, @NotEmpty @Size(max = 50) String genero,
+            @NotEmpty @Size(max = 500) String sinopsis,
             @NotEmpty @Size(max = 50) String duracion, @NotEmpty @Size(max = 50) String clasificacion,
             @NotEmpty @Size(max = 50) String director) {
         this.titulo = titulo;
         this.poster = poster;
         this.sinopsis = sinopsis;
-        this.genero = genero;
         this.duracion = duracion;
         this.clasificacion = clasificacion;
         this.director = director;

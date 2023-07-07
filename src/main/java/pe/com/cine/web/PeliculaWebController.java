@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,44 +26,62 @@ public class PeliculaWebController {
     @Autowired
     private CategoriaService categoriaService;
     @GetMapping("/")
-    public String findAll(Model model){
+    public String getAllPeliculas(Model model) {
         List<PeliculaDTO> peliculas = peliculaService.findAll();
         model.addAttribute("peliculas", peliculas);
         return "peliculas/lista";
     }
+    
     @GetMapping("/crear")
-    public String add(Model model){
+    public String createPelicula(Model model) {
         PeliculaDTO peliculaDTO = new PeliculaDTO();
+        List<CategoriaDTO> categorias = categoriaService.findAll();
         
         model.addAttribute("peliculaDTO", peliculaDTO);
-        model.addAttribute("categorias",categoriaService.findAll());
+        model.addAttribute("categorias", categorias);
         return "peliculas/guardar";
     }
+    
     @PostMapping("/crear")
-    public String add(@ModelAttribute("peliculaDTO")@Valid PeliculaDTO peliculaDTO,BindingResult result){
-        if(result.hasErrors()){
+    public String savePelicula(@ModelAttribute("peliculaDTO") @Valid PeliculaDTO peliculaDTO, BindingResult result) {
+        if (result.hasErrors()) {
             return "peliculas/guardar";
         }
-        PeliculaDTO nuevaPelicula = peliculaService.add(peliculaDTO);
-        return "redirect:/pelicula/" ;
+        
+        peliculaService.add(peliculaDTO);
+        return "redirect:/pelicula/";
+        /* + nuevaPelicula.getPeliculaId(); */
     }
+    
     @GetMapping("/{id}/editar")
-    public String update(@PathVariable int id, Model model){
+    public String updatePelicula(@PathVariable Long id, Model model) {
         PeliculaDTO pelicula = peliculaService.findById(id);
         model.addAttribute("peliculaDTO", pelicula);
-        return "peliculas/guardar";
+
+        // Obtener la lista de categorias y enviarla al modelo
+        List<CategoriaDTO> categorias = categoriaService.findAll();
+        model.addAttribute("categorias", categorias);
+        return "peliculas/editar";
     }
+    
     @PostMapping("/{id}/editar")
-    public String update(@PathVariable int id,@ModelAttribute("peliculaDTO")@Valid PeliculaDTO peliculaDTO, BindingResult result){
-        if(result.hasErrors()){
-            return "peliculas/guardar";
+    public String saveUpdatedPelicula(@PathVariable Long id, @ModelAttribute("peliculaDTO") @Valid PeliculaDTO peliculaDTO, BindingResult result) {
+        if (result.hasErrors()) {
+            return "peliculas/editar";
         }
-        PeliculaDTO peliculaActualizada = peliculaService.update(id, peliculaDTO);
-        return "redirect:/pelicula/" + peliculaActualizada.getId();
+
+        // Obtener la catagoria actual de la peliculas y establecerla en el objeto PeliculaDTO
+        CategoriaDTO categoriaActual = categoriaService.findById(peliculaDTO.getCategoria().getCategoriaId());
+        peliculaDTO.setCategoria(categoriaActual);
+        
+        peliculaService.update(id, peliculaDTO);
+        return "redirect:/pelicula/";
     }
-    @DeleteMapping("/{id}/eliminar")
-    public String delete(@PathVariable int id){
-        peliculaService.delete(id);
-        return "redirect:/pelicula";
-    }
+    
+    @GetMapping("/{id}/eliminar")
+    public String deletePelicula(@PathVariable Long id) {
+    peliculaService.delete(id);
+    return "redirect:/pelicula/";
+}
+
 }

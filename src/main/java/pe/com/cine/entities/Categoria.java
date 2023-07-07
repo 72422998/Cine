@@ -18,9 +18,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "categorias")
 public class Categoria {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "categoria_id")
+    private Long categoriaId;
     @Column(name = "nombre")
     @NotEmpty
     @Size(max = 25)

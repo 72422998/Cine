@@ -30,7 +30,7 @@ public class PeliculaController {
         return ResponseEntity.ok(peliculas);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<PeliculaDTO>findById(@PathVariable long id){
+    public ResponseEntity<PeliculaDTO>findById(@PathVariable Long id){
         PeliculaDTO pelicula = peliculaService.findById(id);
         if(pelicula != null){
             return ResponseEntity.ok(pelicula);
@@ -44,10 +44,10 @@ public class PeliculaController {
             return ResponseEntity.badRequest().build();
         }
         PeliculaDTO nuevaPelicula = peliculaService.add(peliculaDTO);
-        return ResponseEntity.created(URI.create("/api/v1/"+ nuevaPelicula.getId())).body(nuevaPelicula);
+        return ResponseEntity.created(URI.create("/api/v1/"+ nuevaPelicula.getPeliculaId())).body(nuevaPelicula);
     }
     @PutMapping("/{id}/edit")
-    public ResponseEntity<PeliculaDTO>update(@PathVariable long id,@RequestBody @Valid PeliculaDTO peliculaDTO, BindingResult result){
+    public ResponseEntity<PeliculaDTO>update(@PathVariable Long id,@RequestBody @Valid PeliculaDTO peliculaDTO, BindingResult result){
         if(result.hasErrors()){
             return ResponseEntity.badRequest().build();
         }
@@ -59,7 +59,7 @@ public class PeliculaController {
         }
     }
     @DeleteMapping("/{id}/delete")
-    public ResponseEntity<Void>delete(@PathVariable long id){
+    public ResponseEntity<Void>delete(@PathVariable Long id){
         peliculaService.delete(id);
         return ResponseEntity.noContent().build();
     }

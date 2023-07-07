@@ -6,8 +6,8 @@ import pe.com.cine.dto.CategoriaDTO;
 
 public interface CategoriaService {
     List<CategoriaDTO>findAll();
-    CategoriaDTO findById(long id);
+    CategoriaDTO findById(Long id);
     CategoriaDTO add(CategoriaDTO categoriaDTO);
-    CategoriaDTO update(long id,CategoriaDTO categoriaDTO);
-    void delete(long id);
+    CategoriaDTO update(Long id,CategoriaDTO categoriaDTO);
+    void delete(Long id);
 }
