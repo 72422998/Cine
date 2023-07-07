@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="https://www.thymeleaf.org">
-    <head th:replace="~{partial/partial :: head}">
-    </head>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{partial/partial :: head}">
+</head>
 <body>
     <main class="container-fluid">
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <form th:action="@{/pelicula/crear}" method="post" th:object="${peliculaDTO}" class="border rounded shadow-sm p-4">
+                    <form th:action="@{${'/pelicula/' + peliculaDTO.peliculaId + '/editar'}}" method="post" th:object="${peliculaDTO}" class="border rounded shadow-sm p-4">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="" class="form-label">Titulo</label>
-                                <input type="text" class="form-control" th:field="*{titulo}">
+                                <input type="text" class="form-control" th:field="*{titulo}" th:value="${peliculaDTO.titulo}">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="" class="form-label">Poster</label>
@@ -35,9 +35,9 @@
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label for="" class="form-label">Categoria</label>
-                                <select name="categoria" type="text" id="" class="form-control" th:field="*{categoria.categoriaId}">
+                                <select name="categoria" type="text" id="" th:field="*{categoria.categoriaId}" class="form-control">
                                     <option value="">Seleccione una categoria</option>
-                                    <option th:each="categoria : ${categorias}" th:value="${categoria.categoriaId}" th:text="${categoria.nombre}"></option>
+                                    <option th:each="categoria : ${categorias}" th:value="${categoria.categoriaId}" th:text="${categoria.nombre}" ></option>
                                 </select>
                             </div>
                         </div>
@@ -47,7 +47,5 @@
             </div>
         </div>
     </main>
-    
-    
 </body>
 </html>
