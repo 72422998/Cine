@@ -1,3 +1,4 @@
+
 package pe.com.cine.entities;
 
 import jakarta.persistence.Column;
