@@ -46,7 +46,26 @@ public class Confiteria {
     @JoinColumn(name = "sede_id")
     private Sede sede;
 
+    public Confiteria(String nombre, List<Producto> productos, Sede sede) {
+        this.nombre = nombre;
+        this.productos = productos;
+        this.sede = sede;
 
+
+    }
+
+    public Confiteria(@NotEmpty @Size(max = 50) String nombre, List<Producto> productos) {
+        this.nombre = nombre;
+        this.productos = productos;
+    }
+
+    public Confiteria(@NotEmpty @Size(max = 50) String nombre) {
+        this.nombre = nombre;
+    }
+
+    
+
+    
 
 
    
