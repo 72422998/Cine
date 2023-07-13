@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head th:replace="~{partial/partial :: head}">
+</head>
+
+<body>
+    <main class="container-fluid">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form th:action="@{/producto/crear}" method="post" th:object="${productoDTO}"
+                        class="border rounded shadow-sm p-4">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" th:field="*{nombre}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="" class="form-label">Precio</label>
+                                <input type="file" class="form-control" th:field="*{precio}">
+
+                            </div>
+                            <button class="btn btn-block btn-success">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+</body>
+
+</html>

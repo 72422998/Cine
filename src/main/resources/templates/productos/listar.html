@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{partial/partial :: head}">
+    
+</head>
+<body>
+    
+    <main class="container-fluid px-5">
+        <a th:href="@{'/producto/crear'}" type="button" class="btn btn-success mt-5">
+            <i class="fas fa-save me-2"></i>Guardar
+        </a>
+        
+        <div class="table-responsive mt-5">
+            <table class="table table-dark table-striped table-bordered table-hover shadow-sm">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Operaciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="producto: ${productos}">
+                        <td th:text="${producto.productoId}"></td>
+                        <td th:text="${producto.nombre}"></td>
+                        <td th:text="${producto.precio}"></td>
+                        <td>
+                            <div class="d-flex justify-content-center">
+                                <a th:href="@{/producto/{id}/editar(id=${producto.productoId})}" type="button" class="btn btn-sm btn-warning me-2">
+                                    <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                                </a>
+                                <a th:href="@{/producto/{id}/eliminar(id=${producto.productoId})}" type="button" class="btn btn-sm btn-danger">
+                                    <i class="fa-solid fa-trash fa-lg"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
