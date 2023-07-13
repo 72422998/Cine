@@ -11,5 +11,4 @@ public class ProductoDTO {
     private Long productoId;
     private String nombre;
     private Double precio;
-    // private ConfiteriaDTO confiteria;
 }
