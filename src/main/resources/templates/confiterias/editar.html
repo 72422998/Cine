@@ -9,17 +9,21 @@
         <div class="container mt-5"
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <form th:action="@{${'/producto/' + productoDTO.productoId + '/editar'}}" method="post"
-                        th:object="${productoDTO}" class="border rounded shadow-sm p-4">
+                    <form th:action="@{${'/confiteria/' + confiteriaDTO.confiteriaId + '/editar'}}" method="post"
+                        th:object="${confiteriaDTO}" class="border rounded shadow-sm p-4">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" th:field="*{nombre}"
-                                    th:value="${productoDTO.nombre}">
+                                    th:value="${confiteriaDTO.nombre}">
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="" class="form-label">Precio</label>
-                                <input type="file" class="form-control" th:field="*{precio}">
+                                <label for="" class="form-label">Producto</label>
+                                <input type="file" class="form-control" th:field="*{producto}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="" class="form-label">Sede</label>
+                                <input type="file" class="form-control" th:field="*{sede}">
                             </div>
                         </div>
                         <button class="btn btn-block btn-success">Guardar</button>
