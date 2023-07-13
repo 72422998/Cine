@@ -1,8 +1,8 @@
-package pe.com.cine.repositories;
+// package pe.com.cine.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+// import org.springframework.data.jpa.repository.JpaRepository;
 
-import pe.com.cine.entities.Confiteria;
+// import pe.com.cine.entities.Confiteria;
 
-public interface ConfiteriaRepository extends JpaRepository<Confiteria, Long> {
-}
+// public interface ConfiteriaRepository extends JpaRepository<Confiteria, Long> {
+// }

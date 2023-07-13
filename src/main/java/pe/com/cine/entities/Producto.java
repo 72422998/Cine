@@ -34,17 +34,7 @@ public class Producto {
     @Size(max = 20)
     private Double precio;
 
-    @ManyToOne
-    @JoinColumn(name = "confiteria_id")
-    private Confiteria confiteria;
-
-    public Producto(String nombre, Double precio,
-            Confiteria confiteria) {
-        this.nombre = nombre;
-        this.precio = precio;
-        this.confiteria = confiteria;
-    }
-
+    
     public Producto(@NotEmpty @Size(max = 50) String nombre, @NotEmpty @Size(max = 20) Double precio) {
         this.nombre = nombre;
         this.precio = precio;
