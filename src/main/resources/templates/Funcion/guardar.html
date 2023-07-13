@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="https://www.thymeleaf.org">
+    <head th:replace="~{partial/partial :: head}">
+    </head>
+<body>
+    <main class="container-fluid">
+        <div class="container mt-5">
+            <div class="col-md-6">
+                <form th:action="@{/funcion/crear}"
+                method="post" th:object="${funcionDTO}"
+                class="border rounded shadow-sm p-4">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for=""
+                        class="form-label">Hora_Inicio</label>
+                        <input type="text" class="form-control" th:field="*{hora_inicio}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for=""
+                        class="form-label">Hora_Fin</label>
+                        <input type="text" class="form-control"
+                        th:field="{hora_fin}">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for=""
+                        class="form-label">Pelicula</label>
+                        <input type="text" class="form-control"
+                        th:field="{pelicula}">
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for=""
+                        class="form-label">Sala</label>
+                        <input type="text" class="form-control"
+                        th:field="{sala}">
+                    </div>
+
+                </div>
+            </form>
+            </div>
+        </div>
+
+    </main>
+</body>
+</html>
