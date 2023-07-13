@@ -29,7 +29,7 @@ public class PeliculaWebController {
     private PeliculaService peliculaService;
     @Autowired
     private CategoriaService categoriaService;
-    @GetMapping("/")
+    @GetMapping()
     public String getAllPeliculas(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue = "10") int pageSize,Model model) {
         Pageable pageable = PageRequest.of(page, pageSize);
         Page<PeliculaDTO> peliculas = peliculaService.findAll(pageable);

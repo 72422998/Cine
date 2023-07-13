@@ -38,3 +38,7 @@ Descartar cambios
 ```
 git checkout -- .
 ```
+Traer una rama remota y cambiarse a ello
+```
+git checkout -b <nombre-de-la-rama> origin/<nombre-de-la-rama>
+```
