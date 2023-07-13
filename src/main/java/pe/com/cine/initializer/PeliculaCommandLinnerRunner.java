@@ -25,6 +25,17 @@ public class PeliculaCommandLinnerRunner implements CommandLineRunner{
         );
         pelicula1.setCategoria(categoria1);
         peliculaRepository.save(pelicula1);
+        Pelicula pelicula2 = new Pelicula(
+            "El Aro","imagen2.jpg","Una chica con cabello largo busca un corte","180min","+18","James Wan"
+        );
+        pelicula2.setCategoria(categoria1);
+        peliculaRepository.save(pelicula2);
+
+        Pelicula pelicula3 = new Pelicula(
+            "Prisioners","imagen4.jpg","Un padre hara lo que sea para encontrar a su hija","220min","+14","Vince Gillegan"
+        );
+        pelicula3.setCategoria(categoria1);
+        peliculaRepository.save(pelicula3);
         // Pelicula pelicula2= new Pelicula(
         //     "Transformers:El despertar de las bestias","imagen6.jpg","Los transformers viajan a Peru","Accion","255min","+10","James Gunn",null
         // );
