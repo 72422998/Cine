@@ -11,4 +11,5 @@ public class SedeDTO {
     private Long sedeId;
     private String nombre;
     private String direccion;
+    
 }

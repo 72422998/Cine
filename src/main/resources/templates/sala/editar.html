@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="~{partial/partial :: head}">
+</head>
+<body>
+    <main class="container-fluid">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form th:action="@{${'/sala' + salaDTO.salaId + '/editar'}}" method="post" th:object="${salaDTO}"
+                class="border rounded shadow-sm p-4">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                <label for=""
+                class="form-label">Nombre</label>
+                <input type="text" 
+                class="form-control" th:field="*{nombre}" th:value="${salaDTO.nombre}">
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="" class="form-label">Direccion</label>
+                <input type="text"
+                class="form-control" th:field="*{direccion}">
+
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for="" class="form-label">Capacidad</label>
+                <input type="text"
+                class="form-control" th:field="*{capacidad}">
+            </div>
+            <div class="col-md-12 mb-3">
+                <label for=""
+                class="form-label">Turno</label>
+                <select name="turno" type="text" id="" th:field="*{turno.turnoId}" class="form-control">
+                    <option value="">Selecione un Turno</option>
+                    <option th:each="turno : ${turnos}"th:value="${turno.turnoId}" th:text="${turno.nombre}"></option>
+                </select>
+
+            </div>
+
+
+            </div>  
+            <button class="btn btn-block btn-success">Guardar</button>  
+            </form>
+            </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>    

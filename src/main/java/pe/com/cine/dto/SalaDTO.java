@@ -13,4 +13,5 @@ public class SalaDTO {
     private String direccion;
     private String capacidad;
     private String turno;
+    private SedeDTO sede;
 }
