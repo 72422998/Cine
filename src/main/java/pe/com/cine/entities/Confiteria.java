@@ -1,11 +1,17 @@
 package pe.com.cine.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
@@ -29,23 +35,20 @@ public class Confiteria {
     @NotEmpty
     @Size(max = 50)
     private String nombre;
-    @Column(name = "producto")
-    @NotEmpty
-    @Size(max = 20)
-    private Producto producto;
+    
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "confiteria_productos",
+        joinColumns = @JoinColumn(name="confiteria_id"),
+        inverseJoinColumns = @JoinColumn(name="producto_id"))
+        private List<Producto> productos = new ArrayList<>();
+    
     @ManyToOne
     @JoinColumn(name = "sede_id")
     private Sede sede;
 
-    public Confiteria(String nombre, Producto producto, Sede sede) {
-        this.nombre = nombre;
-        this.producto = producto;
-        this.sede = sede;
-    }
 
-    public Confiteria(@NotEmpty @Size(max = 50) String nombre, @NotEmpty @Size(max = 20) Producto producto) {
-        this.nombre = nombre;
-        this.producto = producto;
-    }
+
+
+   
 
 }

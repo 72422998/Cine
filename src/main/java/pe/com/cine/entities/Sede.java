@@ -30,9 +30,6 @@ public class Sede {
     @Size(max=23)
     private String nombre;
 
-    @ManyToOne
-    @JoinColumn(name="sede_id")
-    private Sede sede;
     
     @Column(name="direccion")
     @NotEmpty

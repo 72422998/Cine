@@ -33,6 +33,7 @@ public class Producto {
     @Size(max = 20)
     private Double precio;
 
+    
     public Producto(@NotEmpty @Size(max = 50) String nombre, @NotEmpty @Size(max = 20) Double precio) {
         this.nombre = nombre;
         this.precio = precio;

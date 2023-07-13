@@ -11,5 +11,5 @@ public class ConfiteriaDTO {
     private Long confiteriaId;
     private String nombre;
     private ProductoDTO producto;
-    // private SedeDTO sede;
+    private SedeDTO sede;
 }
