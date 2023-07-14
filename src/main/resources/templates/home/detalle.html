@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<head th:replace="partial/partial :: head">
+</head>
+<body>
+<nav th:replace="partial/partial :: nav"></nav>
+<section class="container-fluid" >
+    <div class="container d-flex justify-content-center p-4">
+        <iframe width="1024" height="480" src="https://www.youtube.com/embed/k64P4l2Wmeg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+    <div class="container p-5">
+        <div class="row">
+            <div class="col-md-6">
+                <img th:src="@{'/images/' + ${pelicula.poster}}" alt="pelicula" width="250px" class="d-flex mx-auto">
+            </div>
+            <div class="col-md-6">
+                <h3 th:text="${pelicula.titulo}"></h3>
+                <strong>Duracion:</strong><p th:text="${pelicula.duracion}"></p>
+                <strong>Descripcion:</strong>
+                <p th:text="${pelicula.sinopsis}"></p>
+                <button class="btn btn-dark p-2 px-4"> <i class="fa-solid fa-ticket text-white"></i> Comprar</button>
+            </div>
+        </div>
+    </div>
+</section>
+<footer th:replace="partial/partial :: footer">
+</footer>
+</body>
+</html>

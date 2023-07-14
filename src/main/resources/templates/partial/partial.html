@@ -15,6 +15,74 @@
       <link rel="stylesheet" th:href="@{/css/style.css}">
     </head>
 <body>
-    
+  <nav th:fragment="nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" th:href="@{/veterinarias/}">Cine<span class="text-success">App</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <button class="navbar-toggler-close" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-close-icon" aria-hidden="true">&times;</span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/home/}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" >Peliculas</a>
+          </li >
+          <li class="nav-item">
+            <a class="nav-link" >Funciones</a>
+          </li >
+          <li class="nav-item">
+            <a class="nav-link" >Salas</a>
+          </li >
+          <li class="nav-item">
+            <a class="nav-link" >Productos</a>
+          </li >
+          <li class="nav-item">
+            <a class="nav-link" >Confitería</a>
+          </li >
+        </ul>
+        <div class="ms-auto d-flex align-items-center">
+          <a class="btn btn-outline-light me-2" href="#">Login</a>
+          <a class="btn btn-outline-light" href="#">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <footer th:fragment="footer" class="container-fluid bg-dark text-white custom-footer" >
+    <div class="container pt-5">
+        <div class="row d-flex align-items-center">
+            <div class="col-md-4 ">
+                <h3 >Cine<span class="text-success">App</span></h3>
+            </div>
+            <div class="col-md-4">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" th:href="@{/pelicula/}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" >Peliculas</a>
+                    </li >
+                    <li class="nav-item">
+                      <a class="nav-link" >Funciones</a>
+                    </li >
+                    <li class="nav-item">
+                      <a class="nav-link" >Salas</a>
+                    </li >
+                    
+                  </ul>
+            </div>
+            <div class="col-md-4">
+                <a href="#"><i class="fa-brands fa-facebook text-white fs-2 me-2"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter text-white fs-2 me-2"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram text-white fs-2 me-2"></i></a>
+            </div>
+
+        </div>
+    </div>
+  </footer>
 </body>
 </html>

@@ -76,6 +76,10 @@ public class Pelicula {
         this.clasificacion = clasificacion;
         this.director = director;
     }
+
+    public Pelicula(String titulo2, String poster2, String sinopsis2, String duracion2, String clasificacion2,
+            String director2, String string) {
+    }
     
     
 }
