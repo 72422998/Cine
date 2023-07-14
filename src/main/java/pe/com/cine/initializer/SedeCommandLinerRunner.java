@@ -15,11 +15,11 @@ public class SedeCommandLinerRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Sede sede1=new Sede("Norte","Av.lima");
+        /* Sede sede1=new Sede("Norte","Av.lima");
         sedeRepository.save(sede1);
 
         Sede sede2=new Sede("Sur","Av.Cultura");
-        sedeRepository.save(sede2);
+        sedeRepository.save(sede2); */
     }
     
 }

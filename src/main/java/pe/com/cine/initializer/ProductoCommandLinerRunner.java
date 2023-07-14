@@ -14,13 +14,13 @@ public class ProductoCommandLinerRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Producto producto1 = new Producto(
+        /* Producto producto1 = new Producto(
                 "Chocolate",
                 2.5);
         productoRepository.save(producto1);
         Producto producto2 = new Producto(
                 "Nachos",
                 15.80);
-        productoRepository.save(producto2);
+        productoRepository.save(producto2); */
     }
 }

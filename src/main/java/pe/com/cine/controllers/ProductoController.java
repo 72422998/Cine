@@ -20,7 +20,7 @@ import pe.com.cine.dto.ProductoDTO;
 import pe.com.cine.services.ProductoService;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/v1/productos")
 public class ProductoController {
     @Autowired
     private ProductoService productoService;
