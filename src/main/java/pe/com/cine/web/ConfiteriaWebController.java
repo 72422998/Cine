@@ -3,6 +3,9 @@ package pe.com.cine.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 import pe.com.cine.dto.SedeDTO;
@@ -29,17 +33,20 @@ public class ConfiteriaWebController {
     private ProductoService productoService;
     @Autowired
     private SedeService sedeService;
-    @GetMapping("/")
-    public String getAllConfiterias(Model model) {
-        List<ConfiteriaDTO> confiterias = confiteriaService.findAll();
+    @GetMapping
+    public String getAllConfiterias(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue = "10") int pageSize,Model model) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+        Page<ConfiteriaDTO> confiterias = confiteriaService.findAll(pageable);
         model.addAttribute("confiterias", confiterias);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", confiterias.getTotalPages());
         return "confiterias/listar";
     }
     
     @GetMapping("/crear")
     public String createConfiteria(Model model) {
         ConfiteriaDTO confiteriaDTO = new ConfiteriaDTO();
-        List<ProductoDTO> productos = productoService.findAll();
+        Page<ProductoDTO> productos = productoService.findAll(null);
         List<SedeDTO> sedes = sedeService.findAll();
         
         model.addAttribute("confiteriaDTO", confiteriaDTO);
@@ -65,7 +72,7 @@ public class ConfiteriaWebController {
         model.addAttribute("confiteriaDTO", confiteria);
 
         //Obtener la lista de productos y enviarla al modelo
-        List<ProductoDTO> productos = productoService.findAll();
+        Page<ProductoDTO> productos = productoService.findAll(null);
         model.addAttribute("productos", productos);
 
         // Obtener la lista de sedes y enviarla al modelo

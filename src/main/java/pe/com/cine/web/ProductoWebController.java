@@ -3,6 +3,9 @@ package pe.com.cine.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 import pe.com.cine.dto.ProductoDTO;
@@ -22,10 +26,13 @@ public class ProductoWebController {
     @Autowired
     private ProductoService productoService;
 
-    @GetMapping("/")
-    public String getAllProductos(Model model) {
-        List<ProductoDTO> productos = productoService.findAll();
+    @GetMapping()
+    public String getAllProductos(@RequestParam(defaultValue = "0") int page,@RequestParam(defaultValue = "10") int pageSize,Model model) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+        Page<ProductoDTO> productos = productoService.findAll(pageable);
         model.addAttribute("productos", productos);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", productos.getTotalPages());
         return "productos/listar";
     }
 

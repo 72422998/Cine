@@ -1,11 +1,12 @@
 package pe.com.cine.services;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import pe.com.cine.dto.ProductoDTO;
 
 public interface ProductoService {
-    List<ProductoDTO> findAll();
+    Page<ProductoDTO> findAll(Pageable pageable);
 
     ProductoDTO findById(Long id);
 

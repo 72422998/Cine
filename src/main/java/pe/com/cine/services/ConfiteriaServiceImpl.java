@@ -1,10 +1,10 @@
 package pe.com.cine.services;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import pe.com.cine.dto.ConfiteriaDTO;
@@ -27,10 +27,9 @@ public class ConfiteriaServiceImpl implements ConfiteriaService {
     private ModelMapper modelMapper;
 
     @Override
-    public List<ConfiteriaDTO> findAll() {
-        List<Confiteria> confiterias = confiteriaRepository.findAll();
-        return confiterias.stream().map(confiteria -> modelMapper.map(confiteria, ConfiteriaDTO.class))
-                .collect(Collectors.toList());
+    public Page<ConfiteriaDTO> findAll(Pageable pageable) {
+        Page<Confiteria> confiterias = confiteriaRepository.findAll(pageable);
+        return confiterias.map(confiteria -> modelMapper.map(confiteria, ConfiteriaDTO.class));
     }
 
     @Override
@@ -44,10 +43,14 @@ public class ConfiteriaServiceImpl implements ConfiteriaService {
     public ConfiteriaDTO add(ConfiteriaDTO confiteriaDTO) {
         Confiteria confiteria = modelMapper.map(confiteriaDTO, Confiteria.class);
         // Obtener el producto por su ID y establecerlo en la confiteria
-        Producto producto = productoRepository.findById(confiteriaDTO.getProducto().getProductoId()).orElseThrow(() -> new IllegalArgumentException("Producto no encontrado con su ID: " + confiteriaDTO.getProducto().getProductoId() ));
+        Producto producto = productoRepository.findById(confiteriaDTO.getProducto().getProductoId())
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Producto no encontrado con su ID: " + confiteriaDTO.getProducto().getProductoId()));
         // confiteria.setProductos(producto);
         // Obtener la sede por su ID y establecerlo en la confiteria
-        Sede sede = sedeRepository.findById(confiteriaDTO.getSede().getSedeId()).orElseThrow(() -> new IllegalArgumentException("Sede no encontrada con su Id: " + confiteriaDTO.getSede().getSedeId()));
+        Sede sede = sedeRepository.findById(confiteriaDTO.getSede().getSedeId())
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Sede no encontrada con su Id: " + confiteriaDTO.getSede().getSedeId()));
         confiteria.setSede(sede);
 
         Confiteria confiteriaGuardada = confiteriaRepository.save(confiteria);
@@ -57,7 +60,8 @@ public class ConfiteriaServiceImpl implements ConfiteriaService {
 
     @Override
     public ConfiteriaDTO update(Long id, ConfiteriaDTO confiteriaDTO) {
-        Confiteria confiteriaExistente = confiteriaRepository.findById(id).orElseThrow(()-> new IllegalArgumentException("Confiteria no encontrada con ID: " + id));
+        Confiteria confiteriaExistente = confiteriaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Confiteria no encontrada con ID: " + id));
 
         // Producto productoActual = confiteriaExistente.getProductos();
 
@@ -77,6 +81,5 @@ public class ConfiteriaServiceImpl implements ConfiteriaService {
     public void delete(Long id) {
         confiteriaRepository.deleteById(id);
     }
-
 
 }

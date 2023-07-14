@@ -1,10 +1,9 @@
 package pe.com.cine.services;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import pe.com.cine.dto.ProductoDTO;
@@ -20,10 +19,9 @@ public class ProductoServiceImpl implements ProductoService {
     private ModelMapper modelMapper;
 
     @Override
-    public List<ProductoDTO> findAll() {
-        List<Producto> productos = productoRepository.findAll();
-        return productos.stream().map(producto -> modelMapper.map(producto, ProductoDTO.class))
-                .collect(Collectors.toList());
+    public Page<ProductoDTO> findAll(Pageable pageable) {
+        Page<Producto> productos = productoRepository.findAll(pageable);
+        return productos.map(producto -> modelMapper.map(producto, ProductoDTO.class));
     }
 
     @Override

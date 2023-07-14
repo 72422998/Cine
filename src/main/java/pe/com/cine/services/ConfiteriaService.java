@@ -1,11 +1,12 @@
 package pe.com.cine.services;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import pe.com.cine.dto.ConfiteriaDTO;
 
 public interface ConfiteriaService {
-    List<ConfiteriaDTO> findAll();
+    Page<ConfiteriaDTO> findAll(Pageable pageable);
 
     ConfiteriaDTO findById(Long id);
 

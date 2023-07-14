@@ -1,9 +1,11 @@
 package pe.com.cine.controllers;
 
 import java.net.URI;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
@@ -20,17 +23,18 @@ import pe.com.cine.dto.ConfiteriaDTO;
 import pe.com.cine.services.ConfiteriaService;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/v1")
 public class ConfiteriaController {
     @Autowired
     private ConfiteriaService confiteriaService;
-    @GetMapping("/all")
-    public ResponseEntity<List<ConfiteriaDTO>>findAll(){
-        List<ConfiteriaDTO> confiterias = confiteriaService.findAll();
+    @GetMapping("/confiterias")
+    public ResponseEntity<Page<ConfiteriaDTO>>findAll(@RequestParam(defaultValue = "0")int page,@RequestParam(defaultValue = "10") int pageSize){
+        Pageable pageable = PageRequest.of(page, pageSize);
+        Page<ConfiteriaDTO> confiterias = confiteriaService.findAll(pageable);
         return ResponseEntity.ok(confiterias);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/confiterias/{id}")
     public ResponseEntity<ConfiteriaDTO>findById(@PathVariable Long id){
         ConfiteriaDTO confiteria = confiteriaService.findById(id);
         if (confiteria!=null) {
@@ -39,7 +43,7 @@ public class ConfiteriaController {
             return ResponseEntity.notFound().build();            
         }
     }
-    @PostMapping("/add")
+    @PostMapping("/confiterias")
     public ResponseEntity<ConfiteriaDTO>add(@RequestBody @Valid ConfiteriaDTO confiteriaDTO, BindingResult result){
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().build();
@@ -49,7 +53,7 @@ public class ConfiteriaController {
     
     }
 
-    @PutMapping("/{id}/edit")
+    @PutMapping("/confiterias/{id}")
     public ResponseEntity<ConfiteriaDTO>update(@PathVariable Long id, @RequestBody @Valid ConfiteriaDTO confiteriaDTO, BindingResult result){
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().build();
@@ -62,7 +66,7 @@ public class ConfiteriaController {
         }
     }
 
-    @DeleteMapping("/{id}/delete")
+    @DeleteMapping("/confiterias/{id}")
     public ResponseEntity<Void>delete(@PathVariable Long id) {
         confiteriaService.delete(id);
         return ResponseEntity.noContent().build();

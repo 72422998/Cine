@@ -1,9 +1,11 @@
 package pe.com.cine.controllers;
 
 import java.net.URI;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
@@ -20,17 +23,18 @@ import pe.com.cine.dto.ProductoDTO;
 import pe.com.cine.services.ProductoService;
 
 @RestController
-@RequestMapping("/api/v1/productos")
+@RequestMapping("/api/v1/")
 public class ProductoController {
     @Autowired
     private ProductoService productoService;
-    @GetMapping("/all")
-    public ResponseEntity<List<ProductoDTO>>findAll(){
-        List<ProductoDTO> productos = productoService.findAll();
+    @GetMapping("/productos")
+    public ResponseEntity<Page<ProductoDTO>>findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int pageSize){
+        Pageable pageable = PageRequest.of(page, pageSize);
+        Page<ProductoDTO> productos = productoService.findAll(pageable);
         return ResponseEntity.ok(productos);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/productos/{id}")
     public ResponseEntity<ProductoDTO>findById(@PathVariable Long id){
         ProductoDTO producto = productoService.findById(id);
         if (producto!=null) {
@@ -39,7 +43,7 @@ public class ProductoController {
             return ResponseEntity.notFound().build();            
         }
     }
-    @PostMapping("/add")
+    @PostMapping("/productos")
     public ResponseEntity<ProductoDTO>add(@RequestBody @Valid ProductoDTO productoDTO, BindingResult result){
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().build();
@@ -49,7 +53,7 @@ public class ProductoController {
     
     }
 
-    @PutMapping("/{id}/edit")
+    @PutMapping("/productos/{id}")
     public ResponseEntity<ProductoDTO>update(@PathVariable Long id, @RequestBody @Valid ProductoDTO productoDTO, BindingResult result){
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().build();
@@ -62,7 +66,7 @@ public class ProductoController {
         }
     }
 
-    @DeleteMapping("/{id}/delete")
+    @DeleteMapping("/productos/{id}")
     public ResponseEntity<Void>delete(@PathVariable Long id) {
         productoService.delete(id);
         return ResponseEntity.noContent().build();
