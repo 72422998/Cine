@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="https://www.thymeleaf.org">
+    <head th:replace="~{partial/partial :: head}">
+    
+    </head>
+<body>
+    <nav th:replace="partial/partial :: nav"/>
+    <section class="container-fluid container-custom">
+        
+    </section>
+    <section class="container-fluid">
+        <div class="container" >
+            <div class="row">
+                <h1 class="text-center mb-4">Destacados</h1>
+                <div class="col-md-4 col-lg-3 col-sm-12" th:each="pelicula: ${peliculas}">
+                    <div class="card mb-4">
+                    <img th:src="@{'/images/' + ${pelicula.poster}}" alt="pelicula" width="200px" class="w-100 img-custom" height="400px">
+                    <a href="#" class="btn btn-dark p-3 rounded-0" th:href="@{/home/detalle/{id}(id=*{pelicula.peliculaId})}">Ver detalle</a>
+
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer th:replace="partial/partial :: footer">
+
+    </footer>
+</body>
+</html>
