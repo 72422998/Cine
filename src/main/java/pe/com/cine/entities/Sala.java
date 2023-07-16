@@ -28,16 +28,13 @@ public class Sala {
     @Column(name="nombre")
     private String nombre;
     @Column(name="direccion")
-    @NotEmpty
-    @Size(max=50)
+
     private String direccion;
     @Column(name="capacidad")
-    @NotEmpty
-    @Size(max=50)
+
     private String capacidad;
     @Column(name="turno")
-    @NotEmpty
-    @Size(max=60)
+
     private String turno;
     @ManyToOne
     @JoinColumn(name="sede_id")
@@ -48,18 +45,9 @@ public class Sala {
         this.direccion=direccion;
         this.capacidad=capacidad;
         this.turno=turno;
-
+        this.sede = sede;
     }
-    public Sala(@NotEmpty @Size(max=50)
-    String nombre, @NotEmpty @Size(max=50)
-    String direccion, @NotEmpty @Size(max=60)
-    String capacidad,@NotEmpty @Size(max=60)
-    String turno){
-        this.nombre=nombre;
-        this.direccion=direccion;
-        this.capacidad=capacidad;
-        this.turno=turno;
-    }
+    
     
 
     

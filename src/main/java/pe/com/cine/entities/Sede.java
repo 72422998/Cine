@@ -24,25 +24,21 @@ public class Sede {
     private Long sedeId;
 
     @Column(name="nombre")
-    @NotEmpty
-    @Size(max=23)
+
     private String nombre;
 
     
     @Column(name="direccion")
-    @NotEmpty
-    @Size(max=23)
-    private String direccion;
-    
-    public Sede(String nombre){
-        this.nombre=nombre;
-        
-    }
-    public Sede(@NotEmpty @Size(max=23) String nombre,
-    @NotEmpty @Size(max=23) String direccion){
-        this.nombre = nombre;
 
+    private String direccion;
+
+
+    public Sede(@NotEmpty @Size(max = 23) String nombre, @NotEmpty @Size(max = 23) String direccion) {
+        this.nombre = nombre;
+        this.direccion = direccion;
     }
+    
+    
     
     
 }

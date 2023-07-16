@@ -20,7 +20,7 @@ import pe.com.cine.dto.PeliculaDTO;
 import pe.com.cine.services.PeliculaService;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/peliculas")
 public class PeliculaController {
     @Autowired
     private PeliculaService peliculaService;

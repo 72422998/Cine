@@ -50,35 +50,44 @@ public class Pelicula {
     @NotEmpty
     @Size(max = 50)
     private String director;
+    @Column(name="video")
+    @NotEmpty
+    @Size(max = 100)
+    private String video;
     @ManyToOne
     @JoinColumn(name ="categoria_id")
     private Categoria categoria;
 
     public Pelicula(String titulo, String poster, String sinopsis, String duracion, String clasificacion,
-            String director, Categoria categoria) {
+            String director,String video, Categoria categoria) {
         this.titulo = titulo;
         this.poster = poster;
         this.sinopsis = sinopsis;
         this.duracion = duracion;
         this.clasificacion = clasificacion;
         this.director = director;
+        this.video = video;
         this.categoria = categoria;
     }
 
-    public Pelicula(@NotEmpty @Size(max = 50) String titulo, @NotEmpty @Size(max = 255) String poster,
-            @NotEmpty @Size(max = 500) String sinopsis,
-            @NotEmpty @Size(max = 50) String duracion, @NotEmpty @Size(max = 50) String clasificacion,
-            @NotEmpty @Size(max = 50) String director) {
-        this.titulo = titulo;
-        this.poster = poster;
-        this.sinopsis = sinopsis;
-        this.duracion = duracion;
-        this.clasificacion = clasificacion;
-        this.director = director;
-    }
+    
+
+    public Pelicula(String titulo, String poster, String sinopsis, String duracion, String clasificacion,
+        String director, String video) {
+    this.titulo = titulo;
+    this.poster = poster;
+    this.sinopsis = sinopsis;
+    this.duracion = duracion;
+    this.clasificacion = clasificacion;
+    this.director = director;
+    this.video = video;
+}
+
+
+
 
     public Pelicula(String titulo2, String poster2, String sinopsis2, String duracion2, String clasificacion2,
-            String director2, String string) {
+            String director2,String video2, String string) {
     }
     
     

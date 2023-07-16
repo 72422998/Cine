@@ -6,7 +6,7 @@
 <nav th:replace="partial/partial :: nav"></nav>
 <section class="container-fluid" >
     <div class="container d-flex justify-content-center p-4">
-        <iframe width="1024" height="480" src="https://www.youtube.com/embed/k64P4l2Wmeg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="1024" height="480" th:src="@{'https://www.youtube.com/embed/' + ${pelicula.video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
     <div class="container p-5">
         <div class="row">

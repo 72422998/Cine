@@ -24,19 +24,26 @@ public class Producto {
     private Long productoId;
 
     @Column(name = "nombre")
-    @NotEmpty
-    @Size(max = 50)
+   
     private String nombre;
 
+    @Column(name = "imagen")
+ 
+    private String imagen;
+
     @Column(name = "precio")
-    @NotEmpty
-    @Size(max = 20)
+    
     private Double precio;
 
-    
-    public Producto(@NotEmpty @Size(max = 50) String nombre, @NotEmpty @Size(max = 20) Double precio) {
+    public Producto(String nombre, String imagen, Double precio) {
         this.nombre = nombre;
+        this.imagen = imagen;
         this.precio = precio;
     }
+
+    
+
+    
+   
 
 }

@@ -7,7 +7,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pe.com.cine.dto.PeliculaDTO;
 import pe.com.cine.dto.SalaDTO;
+import pe.com.cine.entities.Pelicula;
 import pe.com.cine.entities.Sala;
 import pe.com.cine.repositories.SalaRepository;
 
@@ -21,10 +23,10 @@ public class SalaServiceImpl implements SalaService {
 
     @Override
     public List<SalaDTO> findAll() {
-       List<Sala> sala = salaRepository.findAll();
-       return sala.stream().map(sede
-       ->modelMapper.map(sala,SalaDTO.class)).collect(Collectors.toList());
+       List<Sala> salas = salaRepository.findAll();
+       return salas.stream().map(sala -> modelMapper.map(sala,SalaDTO.class)).collect(Collectors.toList());
     }
+
 
     @Override
     public SalaDTO findById(Long id) {

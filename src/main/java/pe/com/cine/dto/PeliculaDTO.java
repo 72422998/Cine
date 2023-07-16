@@ -14,5 +14,6 @@ public class PeliculaDTO {
     private String duracion;
     private String clasificacion;
     private String director;
+    private String video;
     private CategoriaDTO categoria;
 }

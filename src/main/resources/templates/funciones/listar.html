@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="funcion:#{funciones}">
+                    <tr th:each="funcion:${funciones}">
                         <td th:text="${funcion.funcionId}"></td>
                         <td th:text="${funcion.hora_inicio}"></td>
                         <td th:text="${funcion.hora_fin}"></td>

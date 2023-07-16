@@ -43,7 +43,7 @@ public class ProductoController {
             return ResponseEntity.notFound().build();            
         }
     }
-    @PostMapping("/productos")
+    @PostMapping("/productos/save")
     public ResponseEntity<ProductoDTO>add(@RequestBody @Valid ProductoDTO productoDTO, BindingResult result){
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().build();

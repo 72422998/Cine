@@ -18,6 +18,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
+                        <th>Imagen</th>
                         <th>Precio</th>
                         <th>Operaciones</th>
                     </tr>
@@ -26,7 +27,11 @@
                     <tr th:each="producto: ${productos}">
                         <td th:text="${producto.productoId}"></td>
                         <td th:text="${producto.nombre}"></td>
-                        <td th:text="${producto.precio}"></td>
+                        <td>
+                            <img th:src="@{'/images/' + ${producto.imagen}}" alt="imagen" class="img-fluid" width="150" height="200">
+
+                        </td>
+                        <td th:text="${'S/ ' + producto.precio}"></td>
                         <td>
                             <div class="d-flex justify-content-center">
                                 <a th:href="@{/producto/{id}/editar(id=${producto.productoId})}" type="button"
