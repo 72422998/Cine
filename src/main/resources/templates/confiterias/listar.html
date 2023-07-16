@@ -28,7 +28,7 @@
                         <td th:text="${confiteria.confiteriaId}"></td>
                         <td th:text="${confiteria.nombre}"></td>
                         <td th:text="${confiteria.producto}"></td>
-                        <td th:text="${confiteria.sede}"></td>
+                        <td th:text="${confiteria.sede.nombre}"></td>
                         <td>
                             <div class="d-flex justify-content-center">
                                 <a th:href="@{/confiteria/{id}/editar(id=${confiteria.confiteriaId})}" type="button"

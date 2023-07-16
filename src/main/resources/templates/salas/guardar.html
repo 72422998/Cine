@@ -25,12 +25,17 @@
                 </div>
                 <div class="col-md-12 mb-3">
                     <label for="" class="form-label">Turno</label>
-                    <select name="turno" type="text"  id="" class="form-control" th:field="*{turno.turnoId}">
-                        <option value="">Seleccione un Turno</option>
-                        <option th:each="nombre : $ {turnos}"th:value="${turno.turnoId}" th:text="${sala.nombre}"></option>
-                    </select>
+                    <input type="text" class="form-control" th:field="*{turno}">
 
                 </div>
+                <div class="col-md-12 mb-3">
+                    <label for="" class="form-label">Sede</label>
+                    <select name="sede" id="" type="text" class="form-control" th:field="*{sede.sedeId}">
+                        <option value="">Selecciona una sede</option>
+                        <option th:each ="sede : ${sedes}" th:value="${sede.sedeId}" th:text="${sede.nombre}"></option>
+                    </select>
+                </div>
+                
 
              </div>
              <button class="btn btn-block btn-success">Guardar</button>

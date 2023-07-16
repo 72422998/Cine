@@ -43,7 +43,7 @@ public class ConfiteriaController {
             return ResponseEntity.notFound().build();            
         }
     }
-    @PostMapping("/confiterias")
+    @PostMapping("/confiterias/save")
     public ResponseEntity<ConfiteriaDTO>add(@RequestBody @Valid ConfiteriaDTO confiteriaDTO, BindingResult result){
         if (result.hasErrors()) {
             return ResponseEntity.badRequest().build();

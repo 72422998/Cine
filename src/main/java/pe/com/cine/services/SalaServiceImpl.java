@@ -9,9 +9,12 @@ import org.springframework.stereotype.Service;
 
 import pe.com.cine.dto.PeliculaDTO;
 import pe.com.cine.dto.SalaDTO;
+import pe.com.cine.entities.Categoria;
 import pe.com.cine.entities.Pelicula;
 import pe.com.cine.entities.Sala;
+import pe.com.cine.entities.Sede;
 import pe.com.cine.repositories.SalaRepository;
+import pe.com.cine.repositories.SedeRepository;
 
 @Service
 public class SalaServiceImpl implements SalaService {
@@ -20,6 +23,8 @@ public class SalaServiceImpl implements SalaService {
    
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private SedeRepository sedeRepository;
 
     @Override
     public List<SalaDTO> findAll() {
@@ -37,12 +42,23 @@ public class SalaServiceImpl implements SalaService {
 
     @Override
     public SalaDTO add(SalaDTO salaDTO) {
-       Sala sala =modelMapper.map
-       (salaDTO, Sala.class);
-       Sala salaGuardada = salaRepository.
-       save(sala);
+       Sala sala =modelMapper.map(salaDTO, Sala.class);
+       Sede sede = sedeRepository.findById(salaDTO.getSede().getSedeId()).orElseThrow(()-> new IllegalArgumentException("Sede no encontrada con Id: " + salaDTO.getSede().getSedeId()));
+       sala.setSede(sede);
+       Sala salaGuardada = salaRepository.save(sala);
        return modelMapper.map(salaGuardada,SalaDTO.class);
     }
+    // @Override
+    // public PeliculaDTO add(PeliculaDTO peliculaDTO) {
+    //     Pelicula pelicula = modelMapper.map(peliculaDTO, Pelicula.class);
+
+    //     // Obtener la categoria por su ID y establecerla en la pelicula
+    //     Categoria categoria = categoriaRepository.findById(peliculaDTO.getCategoria().getCategoriaId()).orElseThrow(() -> new IllegalArgumentException("Categoria no encontrada cond ID: " + peliculaDTO.getCategoria().getCategoriaId()));
+    //     pelicula.setCategoria(categoria);
+
+    //     Pelicula peliculaGuardada = peliculaRepository.save(pelicula);
+    //     return modelMapper.map(peliculaGuardada, PeliculaDTO.class);
+    // }
 
     @Override
     public SalaDTO update(Long id, SalaDTO salaDTO) {

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
 import pe.com.cine.dto.FuncionDTO;
+import pe.com.cine.dto.PeliculaDTO;
 import pe.com.cine.dto.SalaDTO;
 import pe.com.cine.services.FuncionService;
+import pe.com.cine.services.PeliculaService;
 import pe.com.cine.services.SalaService;
 
 @Controller
@@ -25,6 +27,8 @@ public class FuncionWebController {
     private FuncionService funcionService;
     @Autowired
     private SalaService salaService; 
+    @Autowired
+    private PeliculaService peliculaService;
 
     @GetMapping("/")
     public String getAllFunciones(Model model){
@@ -36,7 +40,9 @@ public class FuncionWebController {
     public String createFuncion(Model model){
         FuncionDTO funcionDTO= new FuncionDTO();
         List<SalaDTO> salas = salaService.findAll();
+        List<PeliculaDTO> peliculas = peliculaService.findAll();
         model.addAttribute("funcionDTO",funcionDTO);
+        model.addAttribute("peliculas",peliculas);
         model.addAttribute("salas", salas);
         return "funciones/guardar";
     }

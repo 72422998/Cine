@@ -32,4 +32,13 @@ public class Funcion {
     @ManyToOne
     @JoinColumn(name = "sala_id")
     private Sala sala;
+    
+    public Funcion(String horaInicio, String horaFin, Pelicula pelicula, Sala sala) {
+        this.horaInicio = horaInicio;
+        this.horaFin = horaFin;
+        this.pelicula = pelicula;
+        this.sala = sala;
+    }
+
+    
 }

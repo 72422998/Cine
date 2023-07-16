@@ -16,21 +16,22 @@
                         <th>Hora_Fin</th>
                         <th>Pelicula</th>
                         <th>Sala</th>
+                        <th>Operaciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="funcion:${funciones}">
                         <td th:text="${funcion.funcionId}"></td>
-                        <td th:text="${funcion.hora_inicio}"></td>
-                        <td th:text="${funcion.hora_fin}"></td>
-                        <td th:text="${funcion.peliculaId}"></td>
-                        <td th:text="${funcion.salaId}"></td>
+                        <td th:text="${funcion.horaInicio}"></td>
+                        <td th:text="${funcion.horaFin}"></td>
+                        <td th:text="${funcion.pelicula.titulo}"></td>
+                        <td th:text="${funcion.sala.nombre}"></td>
                         <td>
                             <div class="d-flex justify-content-center">
                                 <a th:href="@{/funcion/{id}/editar(id=${funcion.funcionId})}" type="button" class="btn btn-sm btn-warning me-2">
                                     <i class="fa-solid fa-pen-to-square fa-lg"></i>
                                 </a>
-                                <a th:href="@{/sala/{id}/eliminar(id=${funcion.funcionId})}" type="button" class="btn btn-sm">
+                                <a th:href="@{/sala/{id}/eliminar(id=${funcion.funcionId})}" type="button" class="btn btn-sm btn-danger">
                                     <i class="fa-solid fa-trash fa-lg"></i>
                                 </a>
                             </div>

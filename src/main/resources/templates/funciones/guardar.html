@@ -12,29 +12,40 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for=""
-                        class="form-label">Hora_Inicio</label>
-                        <input type="text" class="form-control" th:field="*{hora_inicio}">
+                        class="form-label">Hora Inicio</label>
+                        <input type="time" class="form-control" th:field="*{horaInicio}">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for=""
-                        class="form-label">Hora_Fin</label>
-                        <input type="text" class="form-control"
-                        th:field="{hora_fin}">
+                        class="form-label">Hora Fin</label>
+                        <input type="time" class="form-control"
+                        th:field="*{horaFin}">
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for=""
-                        class="form-label">Pelicula</label>
-                        <input type="text" class="form-control"
-                        th:field="{pelicula}">
+                        <label for="" class="form-label">Pelicula</label>
+                        <select name="pelicula" id="" type="text" class="form-control" th:field="*{pelicula.peliculaId}">
+                            <option value="">Selecciona una pelicula</option>
+                            <option th:each ="pelicula : ${peliculas}" th:value="${pelicula.peliculaId}" th:text="${pelicula.titulo}"></option>
+                        </select>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for=""
-                        class="form-label">Sala</label>
-                        <input type="text" class="form-control"
-                        th:field="{sala}">
+                        <label for="" class="form-label">Sala</label>
+                        <select name="sala" id="" type="text" class="form-control" th:field="*{sala.salaId}">
+                            <option value="">Selecciona una sala</option>
+                            <option th:each ="sala : ${salas}" th:value="${sala.salaId}" th:text="${sala.nombre}"></option>
+                        </select>
                     </div>
+                    
+                    <!-- <div class="col-md-12 mb-3">
+                        <label for="" class="form-label">Categoria</label>
+                        <select name="categoria" type="text" id="" class="form-control" th:field="*{categoria.categoriaId}">
+                            <option value="">Seleccione una categoria</option>
+                            <option th:each="categoria : ${categorias}" th:value="${categoria.categoriaId}" th:text="${categoria.nombre}"></option>
+                        </select>
+                    </div> -->
 
                 </div>
+                <button class="btn btn-block btn-success">Guardar</button>
             </form>
             </div>
         </div>
