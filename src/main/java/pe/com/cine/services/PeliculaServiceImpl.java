@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import pe.com.cine.dto.PeliculaDTO;
@@ -24,9 +26,9 @@ public class PeliculaServiceImpl implements PeliculaService{
     private ModelMapper modelMapper;
 
     @Override
-    public List<PeliculaDTO> findAll() {
-        List<Pelicula> peliculas  = peliculaRepository.findAll();
-        return peliculas.stream().map(pelicula -> modelMapper.map(pelicula, PeliculaDTO.class)).collect(Collectors.toList());
+    public Page<PeliculaDTO> findAll(Pageable pageable) {
+        Page<Pelicula> peliculas  = peliculaRepository.findAll(pageable);
+        return peliculas.map(pelicula -> modelMapper.map(pelicula, PeliculaDTO.class));
     }
 
     @Override

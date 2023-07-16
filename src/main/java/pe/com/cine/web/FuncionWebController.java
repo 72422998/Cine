@@ -3,6 +3,9 @@ package pe.com.cine.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 import pe.com.cine.dto.FuncionDTO;
@@ -30,17 +34,18 @@ public class FuncionWebController {
     @Autowired
     private PeliculaService peliculaService;
 
-    @GetMapping("/")
+    @GetMapping()
     public String getAllFunciones(Model model){
         List<FuncionDTO> funciones=funcionService.findAll();
         model.addAttribute("funciones",funciones);
         return "funciones/listar";
     }
     @GetMapping("/crear")
-    public String createFuncion(Model model){
+    public String createFuncion(@RequestParam(defaultValue = "0")int page,@RequestParam(defaultValue =  "10")int pageSize,Model model){
         FuncionDTO funcionDTO= new FuncionDTO();
         List<SalaDTO> salas = salaService.findAll();
-        List<PeliculaDTO> peliculas = peliculaService.findAll();
+        Pageable pageable = PageRequest.of(page,pageSize);
+        Page<PeliculaDTO> peliculas = peliculaService.findAll(pageable);
         model.addAttribute("funcionDTO",funcionDTO);
         model.addAttribute("peliculas",peliculas);
         model.addAttribute("salas", salas);

@@ -24,11 +24,11 @@ import pe.com.cine.services.PeliculaService;
 public class PeliculaController {
     @Autowired
     private PeliculaService peliculaService;
-    @GetMapping("/all")
-    public ResponseEntity<List<PeliculaDTO>>findAll(){
-        List<PeliculaDTO> peliculas = peliculaService.findAll();
-        return ResponseEntity.ok(peliculas);
-    }
+    // @GetMapping("/all")
+    // public ResponseEntity<List<PeliculaDTO>>findAll(){
+    //     List<PeliculaDTO> peliculas = peliculaService.findAll();
+    //     return ResponseEntity.ok(peliculas);
+    // }
     @GetMapping("/{id}")
     public ResponseEntity<PeliculaDTO>findById(@PathVariable Long id){
         PeliculaDTO pelicula = peliculaService.findById(id);
